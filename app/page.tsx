@@ -4,7 +4,7 @@ import { APP_NAME } from "@/lib/constants";
 export default function Home() {
   return (
     <div className="font-sans items-center justify-items-center min-h-screen mx-auto p-8 gap-16 sm:p-10">
-      <main className="flex flex-col w-[400px] gap-[32px] row-start-2 items-center sm:items-start">
+      <main className="flex flex-col w-[400px] gap-[32px] row-start-2 items-center sm:items-start md:w-[600px]">
         <h1 className="text-2xl font-bold text-center space-y-2 sm:text-left md:text-4xl md:text-center">
           Bienvenue sur {APP_NAME}
         </h1>

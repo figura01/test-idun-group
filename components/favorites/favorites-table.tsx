@@ -50,6 +50,7 @@ const TableFavoris = () => {
 
   return (
     favorites.length > 0 ? (
+        <div className="overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-200">
                 <thead>
                     {renderTableHeader()}
@@ -58,11 +59,12 @@ const TableFavoris = () => {
                     {renderTableRows()}
                 </tbody>
             </table>
-        ) : (
-            <div className="border border-gray-200 p-4 text-center">
-                Aucun produit dans les favoris
-            </div>
-        )
+        </div>
+    ) : (
+        <div className="border border-gray-200 p-4 text-center">
+            Aucun produit dans les favoris
+        </div>
+    )
     );
 };
 

@@ -7,3 +7,7 @@ export const getProducts = async () => {
 export const getProductById = async (id: number | string) => {
   return await data.find((produit) => produit.id === Number(id));
 };
+
+export const getCategories = async () => {
+  return Array.from(new Set(data.map((produit) => produit.category)));
+};

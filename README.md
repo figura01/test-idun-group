@@ -1,9 +1,17 @@
 # Initialisation du projet
 
-- Créer la base de l'application avec
+- Création la base de l'application avec
 
 ```
 npx create next-app@latest test-idun-group
+```
+
+renseigner le .env comme le fichier exemple.env
+
+# Lancement du projet
+
+```
+npm i && npm run dev
 ```
 
 # Structure du projet
@@ -19,6 +27,7 @@ test-idun-group
 │   │   │   ├──loading.tsx
 │   │   │   ├──not-found.tsx
 │   │   │   └──page.tsx
+│   │   ├──loading.tsx
 │   │   └──page.tsx
 │   ├──favicon.ico
 │   ├──globals.css
@@ -29,7 +38,11 @@ test-idun-group
 │   ├──favorites
 │   │   └──favorites-table.tsx
 │   ├──product
-│   │   └──product-detail.tsx
+│   │   ├──catalogue.tsx
+│   │   ├──product-card.tsx
+│   │   ├──product-detail.tsx
+│   │   ├──product-list.tsx
+│   │   └──serchbar.tsx
 │   └──shared
 │   │   ├──header
 │   │   │   ├──index.tsx

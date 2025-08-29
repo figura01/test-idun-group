@@ -13,3 +13,14 @@ export type SortOption =
   | "rating-asc"
   | "rating-desc"
   | "";
+
+export type SearchbarProps = {
+  query: string;
+  setQuery: (value: string) => void;
+  category: string;
+  setCategory: (value: string) => void;
+  sort: SortOption;
+  setSort: (value: SortOption) => void;
+  categories: string[];
+  resetSearch: () => void;
+};

@@ -97,13 +97,13 @@ const { toggleFavorite, isFavorite } = useFavorites();
           placeholder="Rechercher par nom..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="border p-2 rounded-md flex-1"
+          className="border p-2 rounded-md w-full md:flex-1"
         />
 
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="border p-2 rounded-md"
+          className="border p-2 rounded-md w-full w-full md:w-auto"
         >
           <option value="">Toutes les catégories</option>
           {categories.map((cat) => (
@@ -116,7 +116,7 @@ const { toggleFavorite, isFavorite } = useFavorites();
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value as SortOption)}
-          className="border p-2 rounded-md"
+          className="border p-2 rounded-md w-full md:w-auto"
         >
           <option value="">Aucun tri</option>
           <option value="price-asc">Prix croissant</option>
@@ -145,7 +145,7 @@ const { toggleFavorite, isFavorite } = useFavorites();
 
       {/* Liste produits */}
       {!loading && filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {filtered.map((p: Product) => (
             <div
               key={p.id}

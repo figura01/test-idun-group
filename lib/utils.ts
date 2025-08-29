@@ -1,5 +1,3 @@
-import { Product } from "@/types";
-
 const CURRENCY_FORMATTER = new Intl.NumberFormat("fr-FR", {
   currency: "EUR",
   style: "currency",
@@ -15,8 +13,4 @@ export function formatCurrency(amount: number | string | null) {
   } else {
     return "NaN";
   }
-}
-
-export function isFavorite(product: Product, favorites: Product[]) {
-  return favorites.some((fav) => fav.id === product.id);
 }

@@ -1,40 +1,113 @@
-# Test Frontend React Next.js
+# Initialisation du projet
 
-Durée indiquée => 60 minutes
+- Créer la base de l'application avec
 
-## Objectif
-Construire une mini application Next.js avec App Router pour afficher un catalogue de produits avec recherche, filtre par catégorie, tri, favoris persistants côté client, et une page détail par produit.
-Démontrer une utilisation efficace et maîtrisée d’un outil d’IA pour gagner du temps tout en gardant la compréhension du code.
+```
+npx create next-app@latest test-idun-group
+```
 
-## Brief
-1. Créer une page liste accessible à l’URL `/produits` qui charge les données produits côté serveur.
-2. Afficher une grille de cartes produits avec image, nom, prix et note.
-3. Ajouter une recherche par nom, insensible à la casse, avec un debouncing d’environ 300 ms.
-4. Ajouter un filtre par catégorie basé sur les catégories présentes dans la donnée.
-5. Ajouter un tri par prix et par note avec ordre croissant et décroissant.
-6. Permettre d’ajouter ou retirer un produit des favoris. Persister l’état dans `localStorage`. Afficher un compteur de favoris dans un en‑tête.
-7. Créer une page détail à l’URL `/produits/[id]` avec métadonnées dynamiques, un état `loading` et un état `not‑found`.
-8. Soigner l’accessibilité de base. Les images ont un `alt` pertinent. Le bouton favoris est un vrai bouton avec `aria-pressed`.
-9. Soigner l’intégration responsive. Une colonne en mobile, trois en desktop. 
-10. Ne faire aucun appel réseau externe obligatoire. Les données sont locales et fournies ci‑dessous.
+# Structure du projet
 
-## Données
-Placez le fichier `data/produits.json` dans votre projet et chargez ces données pour la liste et les détails.
-Le paquet ZIP contient déjà ce fichier.
+```
+test-idun-group
+├──app
+│   ├──favoris
+│   │   ├──layout.tsx
+│   │   └──page.tsx
+│   ├──produits
+│   │   ├──[id]
+│   │   │   ├──loading.tsx
+│   │   │   ├──not-found.tsx
+│   │   │   └──page.tsx
+│   │   └──page.tsx
+│   ├──favicon.ico
+│   ├──globals.css
+│   ├──layout.tsx
+│   ├──not-found.tsx
+│   └──page.tsx
+├──components
+│   ├──favorites
+│   │   └──favorites-table.tsx
+│   ├──product
+│   │   └──product-detail.tsx
+│   └──shared
+│   │   ├──header
+│   │   │   ├──index.tsx
+│   │   │   └──main-menu.tsx
+│   │   └──footer.tsx
+├──data
+│   └──produits.json
+├──hooks
+│   ├──useDebounce.ts
+│   └──useFavorites.ts
+├──lib
+│   ├──actions
+│   │   └──product.actions.ts
+│   ├──constants
+│   │   └──index.ts
+│   └──utils.ts
+├──public
+│   ├──images
+│   │   └──logo.svg
+│   ├──file.svg
+│   ├──globe.svg
+│   ├──next.svg
+│   ├──vercel.svg
+│   └──window.svg
+├──types
+│   └──index.ts
+├──AI_LOG.md
+├──eslint.config.mjs
+├──exemple.env
+├──next.config.ts
+├──package-lock.json
+├──package.json
+├──postcss.config.mjs
+├──README.md
+├──tsconfig.json
+└──.gitignore
+```
 
-## Contraintes techniques
-1. Next.js 14 ou 15 avec App Router.
-3. Gérer l’état en local. 
-4. Gérer `localStorage` uniquement dans un composant client.
-6. Ne pas utiliser d’autre bibliothèque UI que SCSS ou CSS natif pour rester focalisé sur l’intégration.
+# 2 Configuration
 
-## Livrables
-1. Le code du projet.
-2. Un fichier `AI_LOG.md` précisant vos interactions avec l’IA.
-3. Un `README` court expliquant vos choix et compromis dans le temps imparti, ou compléter cette page.
+    - Rendre accessible l'exploitation des images du fichier products.json issu de picsum.photos par Next
+    - Créer .env pour facilité le renseignement des metadatas et la configuration du projet
+        NEXT_PUBLIC_APP_NAME
+        NEXT_PUBLIC_APP_DESCRIPTION
+        NEXT_PUBLIC_SERVER_URL
 
-## Utilisation de l’IA
-1. Utiliser un outil d’IA est autorisé. Cependant, tous les choix devront être justifiés afin de montrer une bonne utilisation de ces outils.
-2. Documenter dans `AI_LOG.md` pour chaque usage  objectif, exemples de prompts utilisés, extrait accepté, modifications réalisées et pourquoi, vérifications de bon fonctionnement.
-3. Garder l’esprit critique. Adapter le code, retirer le superflu, expliquer ce que vous avez changé.
+# 3 Détail de la structure et organisation
 
+- /types
+  // Liste l'ensemble des types utilisé dans l'application
+
+- /lib
+  /actions
+  | - pruduct.actions.ts (getPrducts - getProductById)
+  // Centrealiser l'ensemblre des actions sur un model Product et simule l'asscès aux données avec des fonction asynchones
+
+  | utils.ts
+
+  - formatCurrency // fixe la devise local en EUR
+    // regroupe les fonctions utilitaires, comme la mise en forme des prix
+
+  /constantes
+
+  - index.ts
+    // Créer des varialble globale pour accéder facilement si le .env n'est pas renseigné
+
+- / components
+  | /shared // Des composants commun dau sein de l'application
+  | /product // Composants dédié aux produits
+  | /favorites // Composants dédié aux favoris
+
+- /hooks
+  - useFavorites // Pour facilité la gestion des favoris et la sauvegarde dans le localStoratge par le biais d'un hook
+  - useDebounce // Facilite l'utilisation du débouce pour les actions de la fait sue la barre de recherche
+    // Regroupe les différents hooks utilisé aus seins de l'application
+
+# 4 Utilisation de l'IA
+
+    - Avoir un exemple pour la gestion des favoris avec le localStorage
+    - Avoir un exemple de barre de recherche et les différents filtre rapidement fonctionnnel
+    - Avoir un exemple pour les metadata dynamique

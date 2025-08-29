@@ -41,7 +41,17 @@ export const useFavorites = () => {
     [favorites]
   );
 
+  const removeFromFavorites = useCallback((product: Product) => {
+    setFavorites((prev) => prev.filter((fav) => fav.id !== product.id));
+  }, []);
+
   const countFavorites = useCallback(() => favorites.length, [favorites]);
 
-  return { favorites, toggleFavorite, isFavorite, countFavorites };
+  return {
+    favorites,
+    toggleFavorite,
+    isFavorite,
+    removeFromFavorites,
+    countFavorites,
+  };
 };

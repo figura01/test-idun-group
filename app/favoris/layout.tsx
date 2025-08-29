@@ -6,7 +6,7 @@ export default function FavorisLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="wrapper">
+    <div className="wrappermx-auto px-4 sm:px-6 lg:px-8 py-8">
       {children}
     </div>
   );

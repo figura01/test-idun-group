@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
-import produitsData from "@/data/produits.json";
+import { useState, useMemo, useEffect, use } from "react";
+import { getProducts } from "@/lib/actions/product.actions";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useFavorites } from "@/hooks/useFavorites";
 import { formatCurrency } from "@/lib/utils";
@@ -10,11 +10,13 @@ import Image from "next/image";
 import { Product, SortOption } from '@/types';
 
 export default function ProduitsPage() {
-    const { toggleFavorite, isFavorite } = useFavorites();
+const { toggleFavorite, isFavorite } = useFavorites();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [sort, setSort] = useState<SortOption>("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [productsData, setProductsData] = useState<Product[]>([]);
+
 
   const debouncedQuery = useDebounce(query, 300);
 
@@ -32,12 +34,26 @@ export default function ProduitsPage() {
     setLoading(false);
   }, [debouncedQuery, category, sort]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+
+      setLoading(true);
+      setTimeout(async () => {
+        setProductsData(await getProducts());
+        setLoading(false);
+      }, 300);
+    };
+
+    fetchData();
+  }, []);
+
+
   const categories = Array.from(
-    new Set(produitsData.map((p) => p.category))
+    new Set(productsData.map((p) => p.category))
   ).sort((a, b) => a.localeCompare(b, "fr"));
 
   const filtered = useMemo(() => {
-    let result = produitsData;
+    let result = productsData;
 
     if (debouncedQuery) {
       result = result.filter((p) =>
@@ -60,7 +76,7 @@ export default function ProduitsPage() {
     }
 
     return result;
-  }, [debouncedQuery, category, sort]);
+  }, [productsData, debouncedQuery, category, sort]);
 
   // Bouton pour annuler la recherche
   const resetSearch = () => {

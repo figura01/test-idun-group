@@ -7,7 +7,7 @@ const MainMenu = () => {
     
     return (
         <div className="flex justify-end gap-3">
-            <nav className="flex w-full max-w-xs gap-1">
+            <nav className="flex w-full max-w-xs gap-4">
                 <Link 
                     href="/produits" 
                     className={`link ${pathname === '/produits' ? 'active' : ''}`}
